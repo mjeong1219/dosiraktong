@@ -37,7 +37,15 @@ body{
     font-weight: 400;
     color: #222;
     word-break: keep-all;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+}
+
+.inner{
+    display: block;
+    size-adjust: 100%;
+    max-width: 1420px;
+    margin: 0 auto;
+    background-color: yellow;
 }
 
 /* 레이아웃 */
@@ -126,7 +134,7 @@ header.active .gnb a span::after{
     transition: width 0.5s, opacity 0.5s;
 }
 
-.gnb > li > a:hover > span::after{
+.gnb > li >  > span::after{
     opacity: 1;
     width: 100%;
 }
@@ -255,87 +263,387 @@ header.active .gnb a span::after{
 /* 비주얼 영역 */
 
 .visual{
-    width: 100%;
-    height: 970px;
     position: relative;
-}
-
-#slide_box{
+    display: block;
     width: 100%;
-    height: 970px;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
+    height: 100vh;
 }
 
-.visual_box{
-    position: absolute;
-    top: 260px;
-    left: 230px;
-    /* background-color: yellowgreen; */
-    width: 700px;
-    /* height: 500px; */
+/* Swiper */
+.swiper{
+    width: 100%;
+    height: 100%;
 }
 
-.btn_box{
+.visual-box{
+    width: 100%;
+    height: 100%;
     display: flex;
-    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn{
-    background-color: rgba(255, 255, 255, 0.2);
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-    border-radius: 100%;
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.3);
-    margin: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+.visual-bg-1{
+    background: url("../images/main_visual_1.jpg") no-repeat center;
+    background-size: cover;
 }
 
-.btn:hover{
+.visual-bg-2{
+    background: url("../images/main_visual_2.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.visual-bg-3{
+    background: url("../images/main_visual_3.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.visual-bg-4{
+    background: url("../images/main_visual_4.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.visual-box .inner h2{
+    line-height: 1.3;
+    font-size: 74px;
     color: #fff;
+    font-family: "Godo", "sans-serif";
 }
 
-#title{
-    width: 100%;
-    /* background-color: violet; */
-    color: #fff;
-    line-height: 60px;
+/* 일반 슬라이드 */
+.sw-visual .swiper-slide .visual-box h2{
+    opacity: 0;
+    transform: translateX(-10%);
 }
 
-.text{
-
+.sw-visual .swiper-slide .visual-box p{
+    opacity: 0;
+    transform: translateY(30px);
 }
 
-.text span{
-    font-family: "Godo", sans-serif;
-    font-size: 75px;
-    font-weight: bold;
+/* 포커스된 슬라이드 */
+
+.sw-visual .swiper-slide-active .visual-box h2{
+    transition:  opacity 1s, transform 1s;
+    transform: translateX(0);
+    opacity: 1;
 }
 
-.text p{
-    font-family: "Pretendard", sans-serif;
+.sw-visual .swiper-slide-active .visual-box p{
+    transition:  opacity 1s, transform 1s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.visual-box .inner p{
+    opacity: 0.9;
+    margin-top: 10px;
     font-size: 22px;
     font-weight: 500;
+    color: #fff;
+}
+
+.visual-box .inner a{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    height: 65px;
+    opacity: 1;
+    visibility: visible;
+    padding: 0 45px 0 50px;
+    margin-top: 50px;
+    font-size: 17px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+/* sw-visual 컨트롤 */
+.sw-visual-control{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(50% - 230px);
+    display: flex;
+    width: 100%;
+    max-width: 1420px;
+    z-index: 9;
+}
+
+.sw-visual-control button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.sw-visual-control button i{
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.sw-visual-control butto i{
+    opacity: 1;
+}
+
+.sw-visual-pg{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(50% + 230px);
+    width: 100%;
+    max-width: 1420px;
+    z-index: 9;
+}
+
+.sw-visual-pg-list{
+    position: relative;
+    display: flex;
+}
+
+.sw-visual-pg-list > li{
+    position: relative;
+    width: 85px;
+    font-size: 14px;
+    padding: 10px;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.sw-visual-pg-list > li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 0.4;
+}
+
+.sw-visual-pg-list > li::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+}
+
+.sw-visual-pg-list > li.active::after{
+    transition: width 1.5s;
+    width: 100%;
+}
+
+/* 서비스 영역 */
+
+.service {
+    position: relative;
+    display: block;
+    height: 100vh;
+    min-height: 800px;
+    padding: 180px 0 210px;
+}
+
+.service .inner {
+    height: 100%;
+}
+
+.service-title {
+    font-family: "Godo", "notokr";
+    margin-bottom: 30px;
+    font-size: 38px;
+    text-align: center;
+}
+
+.service-title span {
+    color: #3a68b2;
+}
+
+.service-wrap {
+    width: calc(100% - 20px * 2);
+    background-color: azure;
+    margin: 0 auto;
+    max-width: 1420px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
+}
+
+.service-box-1 {
+    position: relative;
+    display: block;
+    /* 700 / 1420 * 100 = 49.25957vw */
+    height: 49.25957vw;
+    max-height: 680px;
+    overflow: hidden;
+    grid-row: 1/3;
+}
+
+.service-box-1:hover .service-bg {
+    transform: rotate(2deg) scale(1.1);
     opacity: 0.9;
 }
 
-.text2, .text3, .text4{
+.service-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: all 0.5s;
+}
+
+.service-bg-1 {
+    background: url("../images/main_service_img1.jpg") no-repeat center;
+}
+
+.service-box-2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-box-2:hover .service-bg {
+    transform: rotate(2deg) scale(1.1);
+    opacity: 0.9;
+}
+
+.service-bg-2 {
+    background: url("../images/main_service_img2.jpg") no-repeat center;
+}
+
+.service-box-3 {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-box-3:hover .service-bg {
+    transform: rotate(2deg) scale(1.1);
+    opacity: 0.9;
+}
+
+.service-bg-3 {
+    background: url("../images/main_service_img3.jpg") no-repeat center;
+}
+
+.service-wrap a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    padding: 30px;
+}
+
+.service-box-wrap{
+    position: relative;
+    color: #fff;
+    justify-self: start;
+    align-self: end;
+    z-index: 999;
+}
+
+.service-box-title{
+    position: relative;
+    font-size: 26px;
+    margin-bottom: 3px;
+}
+
+.service-box-desc{
+    font-size: 17px;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.no-br{
     display: none;
 }
 
-.text button{
-    padding: 20px 50px;
-    font-size: 17px;
-    color: #fff;
+.service-box-bt{
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 140px;
+    height: 40px;
+    padding: 0 15px 0 20px;
+    margin-top: 20px;
+    font-size: 15px;
     background: none;
-    font-weight: 600;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    margin-top: 30px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
     cursor: pointer;
+}
+
+.service-box-bt i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50);
+}
+
+@media screen and (max-width: 1280px){
+    .service{
+        height: auto;
+        padding: 120px 0 80px;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .service-title{
+        font-size: 30px;
+        white-space: nowrap;
+    }
+    .service-wrap{
+        grid-template-columns: 1fr;
+    }
+    .service-box-1{
+        justify-self: center;
+        width: 100%;
+        max-width: 640px;
+        height: 640px;
+    }
+    .service-box-2,
+    .service-box-3{
+        justify-self: center;
+        width: 100%;
+        max-width: 640px;
+        height: 312px
+    }
+}
+
+@media screen and (max-width: 640px){
+    .service{
+        padding: 70px 0 80px;
+    }
+    .service-box-1{
+        height: 100vw;
+        max-width: 640px;
+    }
+    .service-box-2,
+    .service-box-3{
+        height: 45vw;
+        max-height: 312px;
+    }
+    .service-wrap a{
+        padding-bottom: 60px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .no-br{
+        display: block;
+    }
 }
