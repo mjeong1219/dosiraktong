@@ -101,6 +101,7 @@ const swVisualPgLi = document.querySelectorAll(".sw-visual-pg-list > li");
 console.log(swVisualPgLi);
 
 
+// 비주얼 스와이퍼
 var swiper = new Swiper(".sw-visual", {
     effect: "fade",
     // fadeEffect: {
@@ -147,3 +148,25 @@ swVisualPgLi.forEach(function(item,index){
         swiper.slideToLoop(index, 500, false);
     });
 });
+
+
+// 비즈니스 스와이퍼
+const swBusiness = new Swiper(".sw-business", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    breakpoints: {
+        640: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+
+// 비즈니스 modal
+const businessModal = document.querySelector(".business-modal");
+businessModal.addEventListener("click", function(){  // 모달을 클릭했을 때.
+    businessModal.style.display = "none";
+})
