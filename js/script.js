@@ -1,9 +1,18 @@
 // AOS 셋팅
 AOS.init();
 
+// 모달 창 기능
+let modalWrap = document.querySelector(".modal-wrap");
+let modalClose = document.querySelector(".modal-close");
+
+modalClose.addEventListener("click", function(){
+    modalWrap.classList.add("fadeOut");
+    modalWrap.addEventListener("animationend", function(){
+        modalWrap.style.display = "none";
+    })
+})
+
 // 상단 스크롤 기능
-
-
 const header = document.querySelector("header");
 const mbt = document.querySelector(".mbt");
 let scy = 0;
@@ -170,3 +179,44 @@ const businessModal = document.querySelector(".business-modal");
 businessModal.addEventListener("click", function(){  // 모달을 클릭했을 때.
     businessModal.style.display = "none";
 })
+
+// 위로가기 스크롤바 구현
+const gotop = document.querySelector(".gotop");
+gotop.addEventListener("click", function(){
+    window.scrollTo({  // 스크롤이 ~로 가라
+        top:0, behavior: "smooth"  // top의 0위치로 smooth하게
+    })
+});
+
+// footer의 상단위치 픽셀값 파악
+let footer = document.querySelector(".footer");
+let footerY = footer.offsetTop;  // 스크롤 했을 때 Y의 값.
+let waypoint_footer = new Waypoint({  // 웨이포인트를 선언하고 그 안에 바로 값을 넣어줌.
+    element: document.querySelector(".footer"),
+    handler: function(direction){
+        if(direction === "down"){
+            gotop.classList.add("active-footer");
+        }else{
+            gotop.classList.remove("active-footer");
+        }
+    },
+    offset : "95%" // 서비스가 80% 보였을 때
+});
+
+let waypoint_service = new Waypoint({  // 웨이포인트를 선언하고 그 안에 바로 값을 넣어줌.
+    element: document.querySelector(".service"),
+    handler: function(direction){
+        if(direction === "down"){
+            gotop.classList.add("active");
+        }else{
+            gotop.classList.remove("active");
+        }
+    },
+    offset : "80%" // 서비스가 80% 보였을 때
+});
+
+// 안내창 modal
+// const modal = document.querySelector(".modal-wrap");
+// modal.addEventListener("click", function(){
+//     modal.style.display = "none"
+// })
